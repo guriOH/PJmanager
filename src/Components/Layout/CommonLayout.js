@@ -5,7 +5,7 @@ const CommonLayout = ({children}) => {
   return (
   <div>
     <Segment basic style={{ height: "100vh" }}>
-          <Header as="h3">{children.Header}</Header>
+         
           {children}
     </Segment>
   </div>

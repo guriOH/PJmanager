@@ -27,8 +27,11 @@ const PushableSidebar = () => {
       </Sidebar>
 
       <Sidebar.Pusher>
-        <Menu>
+        <Menu inverted>
           <Menu.Item onClick={onClick}>Menu</Menu.Item>
+          <Menu.Item position={"right"} onClick={onClick}>
+            Login
+          </Menu.Item>
         </Menu>
 
         <Segment basic style={{ height: "100vh" }}>

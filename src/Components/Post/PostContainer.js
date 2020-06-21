@@ -1,4 +1,4 @@
-import React from "react";
+import React from "./node_modules/react";
 
 import {
   Container,
@@ -11,7 +11,7 @@ import {
   Segment,
   Header,
   Icon,Step
-} from "semantic-ui-react";
+} from "./node_modules/semantic-ui-react";
 
 const typeOptions = [
   { key: "web", text: "Web", value: "Web" },
