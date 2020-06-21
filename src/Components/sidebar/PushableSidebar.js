@@ -5,9 +5,9 @@ import { Route, Switch } from "react-router-dom";
 
 import CommonLayout from "../Layout/CommonLayout";
 
-import CreatePojectPage from "../../pages/CreatePojectPage";
-import ProjectsPage from "../../pages/ProjectsPage";
-import DashboardPage from "../../pages/DashboardPage";
+import CreatePojectPage from "../../Pages/CreatePojectPage";
+import ProjectsPage from "../../Pages/ProjectsPage";
+import DashboardPage from "../../Pages/DashboardPage";
 
 const PushableSidebar = () => {
   const [showSideBar, setShowSideBar] = React.useState(false);
