@@ -1,25 +1,30 @@
+import {CREATE_PROJECT} from '../Actions'
+
 import {combineReducers} from 'redux';
 
-const songsReducer = () => {
-    return [
-        {title:' No scrubs' ,duratino:'4:08'},
-        {title:' No scrubs' ,duratino:'4:28'},
-        {title:' No scrubs' ,duratino:'4:38'},
-    ]
+const initialState = {
+    projects:[]
 }
 
-
-const selectedSongReducer = (selectedSong = null, action) => {
-    if(action.type==='SONG_SELECTED'){
-        return action.payload;
+function projectReducer(state=initialState, action) {
+    switch(action.type){
+        case CREATE_PROJECT:
+            return Object.assign({}, state, {
+                projects:[
+                  ...state.projects,
+                  {
+                      project: action.project
+                  }  
+                ]
+            })
+        default:
+            return state
     }
-
-    return selectedSong;
 }
+
 
 export default combineReducers({
-    songs: songsReducer,
-    selectedSong: selectedSongReducer
+    projects: projectReducer
 })
 
 

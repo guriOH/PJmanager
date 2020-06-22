@@ -20,7 +20,6 @@ const typeOptions = [
 const PostContainer = () => (
   <div>
     <Container textAlign="justified">
-    
       <b>Description</b>
       <Divider />
       <Form>

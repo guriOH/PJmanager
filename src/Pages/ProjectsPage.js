@@ -1,21 +1,45 @@
 import React from "react";
+import { connect } from 'react-redux'
 
-import {
-  Container,
-  Header,
-} from "semantic-ui-react";
-
-
+import { Container, Header, Grid, Card, Input, Divider } from "semantic-ui-react";
 const ProjectsPage = () => (
   <div>
-      <Header as="h3">프로젝트 모음</Header>
-    <Container textAlign="justified">
-    
-        <Header>Project History</Header>
-      <b>Description</b>
-      
+    <Header as="h3">프로젝트 모음</Header>
+    <Container left textAlign="justified">
+      <Input fluid icon='search' placeholder='Search...' />
+      <Divider/>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Card
+              href="#card-example-link-card"
+              header="Elliot Baker"
+              meta="Friend"
+              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+            />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Card
+              href="#card-example-link-card"
+              header="Elliot Baker"
+              meta="Friend"
+              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Container>
   </div>
 );
 
-export default ProjectsPage;
+
+const mapStateToProps = (state) =>{
+  console.log(state);
+
+  return {
+    projects: state.projects
+  };
+}
+
+
+export default connect(mapStateToProps)(ProjectsPage);

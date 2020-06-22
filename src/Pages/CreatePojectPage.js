@@ -1,19 +1,18 @@
 import React from "react";
+import { connect } from 'react-redux'
+import {createProject} from '../Actions'
 
 import {
   Container,
   Divider,
   Form,
   Button,
-  Input,
   Select,
   TextArea,
   Segment,
   Header,
   Icon,
-  Step,
 } from "semantic-ui-react";
-import { render } from "@testing-library/react";
 
 const typeOptions = [
   { key: "web", text: "Web", value: "Web" },
@@ -45,7 +44,13 @@ class CreateProjectPage extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state)
+  
+    var project = {
+      name: this.state.name,
+      type: this.state.type,
+      description:this.state.description,
+    }
+    this.props.newProject(project)
     event.preventDefault();
   }
 
@@ -111,4 +116,22 @@ class CreateProjectPage extends React.Component {
   }
 }
 
-export default CreateProjectPage;
+const mapStateToProps = (state) =>{
+  console.log(state);
+
+  return {
+    projects: state.projects
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    newProject: project => {
+      dispatch(createProject(project))
+    }
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectPage);
