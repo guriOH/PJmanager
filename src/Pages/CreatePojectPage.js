@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux'
-import {createProject} from '../Actions'
+import { connect } from "react-redux";
+import { createProject } from "../Actions";
 
 import {
   Container,
@@ -19,43 +19,47 @@ const typeOptions = [
   { key: "app", text: "App", value: "App" },
 ];
 class CreateProjectPage extends React.Component {
-  constructor(props){
+  componentDidMount() {
+    fetch("/api")
+      .then((res) => console.log(res))
+      .then(data=>console.log(data));
+  }
+
+  constructor(props) {
     super(props);
 
     this.state = {
       name: "",
       type: "",
-      description:"",
-    }
+      description: "",
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
-  
 
-  handleChange(event, field){
-    console.log(field)
-    this.setState({ [field]: event.target.value }) 
+  handleChange(event, field) {
+    console.log(field);
+    this.setState({ [field]: event.target.value });
   }
 
-  handleSearchChange(event,value,field){
-    this.setState({ [field]: value }) 
+  handleSearchChange(event, value, field) {
+    this.setState({ [field]: value });
   }
 
   handleSubmit(event) {
-  
     var project = {
       name: this.state.name,
       type: this.state.type,
-      description:this.state.description,
-    }
-    this.props.newProject(project)
+      description: this.state.description,
+    };
+    this.props.newProject(project);
     event.preventDefault();
   }
 
   render() {
-    const { name, type, description } = this.state
+    const { name, type, description } = this.state;
 
     return (
       <div>
@@ -68,7 +72,7 @@ class CreateProjectPage extends React.Component {
               placeholder="ProjectName"
               name="projectname"
               value={name}
-              onChange={(event)=>this.handleChange(event, "name")}
+              onChange={(event) => this.handleChange(event, "name")}
             >
               <label>프로젝트명</label>
               <input placeholder="Project Name" />
@@ -84,7 +88,9 @@ class CreateProjectPage extends React.Component {
                 placeholder="Type"
                 search
                 searchInput={{ id: "form-select-control-gender" }}
-                onChange={(event,{value})=>this.handleSearchChange(event,value,"type")}
+                onChange={(event, { value }) =>
+                  this.handleSearchChange(event, value, "type")
+                }
               />
             </Form.Group>
             <Form.Field
@@ -93,7 +99,7 @@ class CreateProjectPage extends React.Component {
               label="Opinion"
               placeholder="Opinion"
               name={description}
-              onChange={(event)=>this.handleChange(event, "description")}
+              onChange={(event) => this.handleChange(event, "description")}
             />
             <Segment placeholder>
               <Header icon>
@@ -116,22 +122,20 @@ class CreateProjectPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   console.log(state);
 
   return {
-    projects: state.projects
+    projects: state.projects,
   };
-}
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    newProject: project => {
-      dispatch(createProject(project))
-    }
-  }
-}
-
-
+    newProject: (project) => {
+      dispatch(createProject(project));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectPage);
