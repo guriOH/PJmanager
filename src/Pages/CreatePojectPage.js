@@ -21,8 +21,12 @@ const typeOptions = [
 class CreateProjectPage extends React.Component {
   componentDidMount() {
     fetch("/api")
-      .then((res) => console.log(res))
-      .then(data=>console.log(data));
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(JSON.stringify(myJson));
+      });
   }
 
   constructor(props) {

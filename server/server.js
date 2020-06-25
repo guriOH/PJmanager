@@ -4,7 +4,7 @@ const api = require('./routes/index');
 const cors = require('cors');
 
 app.use(cors());
-app.use('/api', (req, res)=> res.json({username:'bryan'}));
+app.use('/api',api);
 
 const port = 3002;
 
