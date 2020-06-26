@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Icon, Image, Menu, Segment, Sidebar } from "semantic-ui-react";
-import { MenuList } from "./MenuList";
+import  MenuList from "./MenuList";
 import { Route, Switch } from "react-router-dom";
 
 import CommonLayout from "../Layout/CommonLayout";
@@ -8,10 +8,10 @@ import CommonLayout from "../Layout/CommonLayout";
 import CreatePojectPage from "../../Pages/CreatePojectPage";
 import ProjectsPage from "../../Pages/ProjectsPage";
 import DashboardPage from "../../Pages/DashboardPage";
-
+import { connect } from "react-redux";
 import LoginForm from "../Form/LoginForm";
 
-const PushableSidebar = () => {
+const PushableSidebar = ({user}) => {
   const [showSideBar, setShowSideBar] = React.useState(false);
   const onClick = () => setShowSideBar(!showSideBar);
   return (
@@ -25,7 +25,7 @@ const PushableSidebar = () => {
         visible={showSideBar}
         width="thin"
       >
-        <MenuList />
+        <MenuList login={true}/>
       </Sidebar>
 
       <Sidebar.Pusher>
@@ -76,5 +76,12 @@ function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
     />
   );
 }
+const mapStateToProps = (state) => {
+  console.log("asd"+state);
+  return {
+    user: state.user,
+  };
+};
 
-export default PushableSidebar;
+
+export default connect(mapStateToProps)(PushableSidebar);
