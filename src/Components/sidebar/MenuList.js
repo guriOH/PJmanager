@@ -6,6 +6,10 @@ export const MenuList = () => {
   return (
     <div>
       <Menu.Item as="li">
+        <Icon name="sign-in" />
+        <Link to="/login">Login</Link>
+      </Menu.Item>
+      <Menu.Item as="li">
         <Icon name="home" />
         <Link to="/home">Home</Link>
       </Menu.Item>

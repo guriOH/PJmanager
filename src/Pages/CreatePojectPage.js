@@ -68,7 +68,6 @@ class CreateProjectPage extends React.Component {
     return (
       <div>
         <Header as="h3">프로젝트 시작</Header>
-        <Container textAlign="justified">
           <b>Description</b>
           <Divider />
           <Form onSubmit={this.handleSubmit}>
@@ -120,7 +119,6 @@ class CreateProjectPage extends React.Component {
               label=""
             />
           </Form>
-        </Container>
       </div>
     );
   }

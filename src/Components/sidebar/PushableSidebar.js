@@ -9,6 +9,8 @@ import CreatePojectPage from "../../Pages/CreatePojectPage";
 import ProjectsPage from "../../Pages/ProjectsPage";
 import DashboardPage from "../../Pages/DashboardPage";
 
+import LoginForm from "../Form/LoginForm";
+
 const PushableSidebar = () => {
   const [showSideBar, setShowSideBar] = React.useState(false);
   const onClick = () => setShowSideBar(!showSideBar);
@@ -27,37 +29,36 @@ const PushableSidebar = () => {
       </Sidebar>
 
       <Sidebar.Pusher>
-        <Menu inverted>
+        <Menu>
           <Menu.Item onClick={onClick}>Menu</Menu.Item>
           <Menu.Item position={"right"} onClick={onClick}>
             Login
           </Menu.Item>
         </Menu>
 
-        <Segment basic style={{ height: "100vh" }}>
-          <Switch>
-            <RouteWrapper
-              path="/home"
-              component={DashboardPage}
-              layout={CommonLayout}
-            />
-            <RouteWrapper
-              path="/new"
-              component={CreatePojectPage}
-              layout={CommonLayout}
-            />
-            <RouteWrapper
-              path="/projects"
-              component={ProjectsPage}
-              layout={CommonLayout}
-            />
-            <RouteWrapper
-              path="/tags"
-              component={CreatePojectPage}
-              layout={CommonLayout}
-            />
-          </Switch>
-        </Segment>
+        <Switch>
+          <RouteWrapper path="/login" layout={LoginForm} />
+          <RouteWrapper
+            path="/home"
+            component={DashboardPage}
+            layout={CommonLayout}
+          />
+          <RouteWrapper
+            path="/new"
+            component={CreatePojectPage}
+            layout={CommonLayout}
+          />
+          <RouteWrapper
+            path="/projects"
+            component={ProjectsPage}
+            layout={CommonLayout}
+          />
+          <RouteWrapper
+            path="/tags"
+            component={CreatePojectPage}
+            layout={CommonLayout}
+          />
+        </Switch>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   );

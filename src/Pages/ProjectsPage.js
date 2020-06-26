@@ -5,12 +5,11 @@ import { Container, Header, Grid, Card, Input, Divider } from "semantic-ui-react
 const ProjectsPage = () => (
   <div>
     <Header as="h3">프로젝트 모음</Header>
-    <Container left textAlign="justified">
       <Input fluid icon='search' placeholder='Search...' />
       <Divider/>
       <Grid>
         <Grid.Row>
-          <Grid.Column width={4}>
+          <Grid.Column width={2}>
             <Card
               href="#card-example-link-card"
               header="Elliot Baker"
@@ -18,7 +17,7 @@ const ProjectsPage = () => (
               description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
             />
           </Grid.Column>
-          <Grid.Column width={4}>
+          <Grid.Column width={2}>
             <Card
               href="#card-example-link-card"
               header="Elliot Baker"
@@ -28,7 +27,6 @@ const ProjectsPage = () => (
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Container>
   </div>
 );
 

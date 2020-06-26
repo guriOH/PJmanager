@@ -5,9 +5,9 @@ import { Container, Header } from "semantic-ui-react";
 const DashboardPage = () => (
   <div>
     <Header as="h3">대쉬보드</Header>
-    <Container textAlign="justified">
+    {/* <Container textAlign="justified"> */}
       <b>Description</b>
-    </Container>
+    {/* </Container> */}
   </div>
 );
 
