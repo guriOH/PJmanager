@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const api = require('./routes/index');
+const projectController = require('./api/projectController');
 const cors = require('cors');
 
 app.use(cors());
-app.use('/api',api);
+app.use('/project',projectController);
 
 const port = 3002;
 

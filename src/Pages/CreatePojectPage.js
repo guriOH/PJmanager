@@ -44,7 +44,6 @@ class CreateProjectPage extends React.Component {
   }
 
   handleChange(event, field) {
-    console.log(field);
     this.setState({ [field]: event.target.value });
   }
 
@@ -124,13 +123,6 @@ class CreateProjectPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
-
-  return {
-    projects: state.projects,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -140,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectPage);
+export default connect(null, mapDispatchToProps)(CreateProjectPage);

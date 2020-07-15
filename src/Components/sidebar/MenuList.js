@@ -14,19 +14,9 @@ class MenuList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div >
         <Menu.Item as="li">
-          {this.props.login ? (
-            <>
-              <Icon name="sign-out" />
-              <span>Logout</span>
-            </>
-          ) : (
-            <>
-              <Icon name="sign-in" />
-              <Link to="/login">Login</Link>
-            </>
-          )}
+          
         </Menu.Item>
         <Menu.Item as="li">
           <Icon name="home" />
@@ -42,7 +32,7 @@ class MenuList extends React.Component {
         </Menu.Item>
         <Menu.Item as="li">
           <Icon name="tag" />
-          <Link to="/tag">tags</Link>
+          <Link to="/tags">tags</Link>
         </Menu.Item>
       </div>
     );
