@@ -1,16 +1,8 @@
 import React from "react";
-import { Icon, Menu, Button } from "semantic-ui-react";
+import { Icon, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 class MenuList extends React.Component {
-
-
-  constructor(props) {
-    super(props);
-
-    console.log(this.props.login)
-  }
 
   render() {
     return (

@@ -1,34 +1,68 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import * as service from '../services/project';
 
-import { Container, Header, Grid, Card, Input, Divider } from "semantic-ui-react";
-const ProjectsPage = () => (
-  <div>
-    <Header as="h3">프로젝트 모음</Header>
-      <Input fluid icon='search' placeholder='Search...' />
-      <Divider/>
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={2}>
-            <Card
-              href="#card-example-link-card"
-              header="Elliot Baker"
-              meta="Friend"
-              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
-            />
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <Card
-              href="#card-example-link-card"
-              header="Elliot Baker"
-              meta="Friend"
-              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
-            />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-  </div>
-);
+import { Header, Grid, Card, Input, Divider } from "semantic-ui-react";
+class ProjectsPage extends React.Component{
+
+  constructor(props) {
+    super();
+    
+    this.state = {
+      projects : [
+      ]
+    }
+
+  }
+  componentDidMount() {
+    this.fetchProjectInfo();
+  }
+
+  fetchProjectInfo = async () => {
+    const response = await service.getProjectList();
+    console.log(response);
+
+    const projects = response.data.projects;
+
+    this.setState({
+      projects
+    })
+
+    console.log(this.state)
+  }
+
+  render() {
+
+    const {projects} = this.state;
+
+    return (
+      <div>
+      <Header as="h3">프로젝트 모음</Header>
+        <Input fluid icon='search' placeholder='Search...' />
+        <Divider/>
+        <Grid>
+            {
+              projects.map((project,i) => 
+                (
+                  <Grid.Row stretched>
+                  <Grid.Column width={2} key={i}>
+                  <Card
+                    href="#card-example-link-card"
+                    header={project.projectName}
+                    meta={project.category}
+                    description={project.description}
+                  />
+                </Grid.Column>
+                </Grid.Row>
+                )
+              )
+            }
+         
+        </Grid>
+    </div>
+    )
+  }
+}
 
 
 const mapStateToProps = (state) =>{

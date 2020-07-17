@@ -3,10 +3,10 @@ var router = express.Router();
 
 var ProjectController = require('../api/project.controllers')
 
-router.get('/:id', ProjectController.getProject);
+router.get('/:projectId', ProjectController.getProject);
 router.get('/', ProjectController.getProjectList);
 router.post('/', ProjectController.createProject);
-router.patch('/:id', ProjectController.updateProject);
-router.delete('/', ProjectController.deleteProject);
+router.put('/:projectId', ProjectController.updateProject);
+router.delete('/:projectId', ProjectController.deleteProject);
 
 module.exports = router;

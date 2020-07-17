@@ -27,7 +27,7 @@ db.once('open', function(){
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-
+mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb://admin:admin@localhost:27017/pjmanager');
 
 

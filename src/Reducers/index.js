@@ -4,7 +4,6 @@ import { combineReducers } from "redux";
 
 const initialState = {
   projects: [],
-  user: [],
 };
 
 function projectReducer(state = initialState, action) {

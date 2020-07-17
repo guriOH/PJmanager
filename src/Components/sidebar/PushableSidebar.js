@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Icon, Image, Menu, Segment, Sidebar } from "semantic-ui-react";
+import {  Menu, Segment, Sidebar } from "semantic-ui-react";
 import MenuList from "./MenuList";
 import { Route, Switch } from "react-router-dom";
 
@@ -77,7 +77,6 @@ function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log("asd" + state);
   return {
     user: state.user.user,
   };

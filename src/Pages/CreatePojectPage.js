@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { createProject } from "../Actions";
 
+import * as service from '../services/project';
+
 import {
-  Container,
   Divider,
   Form,
   Button,
@@ -19,28 +20,25 @@ const typeOptions = [
   { key: "app", text: "App", value: "App" },
 ];
 class CreateProjectPage extends React.Component {
-  componentDidMount() {
-    fetch("/api")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        console.log(JSON.stringify(myJson));
-      });
-  }
-
+  
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "",
-      type: "",
+      projectName: "",
+      category: "",
       description: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+  }
+
+
+  createProjectInfo = async (project) => {
+    const response = await service.createProject(project);
+    console.log(response);
   }
 
   handleChange(event, field) {
@@ -52,29 +50,25 @@ class CreateProjectPage extends React.Component {
   }
 
   handleSubmit(event) {
-    var project = {
-      name: this.state.name,
-      type: this.state.type,
-      description: this.state.description,
-    };
-    this.props.newProject(project);
+    console.log(this.state)
+    this.createProjectInfo(this.state);
+    this.props.newProject( this.state);
     event.preventDefault();
   }
 
   render() {
-    const { name, type, description } = this.state;
+    const { name, description } = this.state;
 
     return (
       <div>
         <Header as="h3">프로젝트 시작</Header>
-          <b>Description</b>
           <Divider />
           <Form onSubmit={this.handleSubmit}>
             <Form.Field
               placeholder="ProjectName"
               name="projectname"
               value={name}
-              onChange={(event) => this.handleChange(event, "name")}
+              onChange={(event) => this.handleChange(event, "projectName")}
             >
               <label>프로젝트명</label>
               <input placeholder="Project Name" />
@@ -91,7 +85,7 @@ class CreateProjectPage extends React.Component {
                 search
                 searchInput={{ id: "form-select-control-gender" }}
                 onChange={(event, { value }) =>
-                  this.handleSearchChange(event, value, "type")
+                  this.handleSearchChange(event, value, "category")
                 }
               />
             </Form.Group>
