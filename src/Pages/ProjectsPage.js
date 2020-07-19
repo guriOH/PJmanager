@@ -1,18 +1,15 @@
 import React from "react";
-import { connect } from 'react-redux';
-import * as service from '../services/project';
+import { connect } from "react-redux";
+import * as service from "../services/project";
 
 import { Header, Grid, Card, Input, Divider } from "semantic-ui-react";
-class ProjectsPage extends React.Component{
-
+class ProjectsPage extends React.Component {
   constructor(props) {
     super();
-    
-    this.state = {
-      projects : [
-      ]
-    }
 
+    this.state = {
+      projects: [],
+    };
   }
   componentDidMount() {
     this.fetchProjectInfo();
@@ -25,53 +22,46 @@ class ProjectsPage extends React.Component{
     const projects = response.data.projects;
 
     this.setState({
-      projects
-    })
+      projects,
+    });
 
-    console.log(this.state)
-  }
+    console.log(this.state);
+  };
 
   render() {
-
-    const {projects} = this.state;
+    const { projects } = this.state;
 
     return (
       <div>
-      <Header as="h3">프로젝트 모음</Header>
-        <Input fluid icon='search' placeholder='Search...' />
-        <Divider/>
-        <Grid>
-            {
-              projects.map((project,i) => 
-                (
-                  <Grid.Row stretched>
-                  <Grid.Column width={2} key={i}>
+        <Header as="h3">프로젝트 모음</Header>
+        
+        <Input fluid icon="search" placeholder="Search..." />
+        <Divider />
+        <Grid columns={8}>
+          {projects.map((project, i) =>
+              <Grid.Row stretched>
+                <Grid.Column width={2} key={i}>
                   <Card
                     href="#card-example-link-card"
-                    header={project.projectName}
+                    header={i}
                     meta={project.category}
                     description={project.description}
                   />
                 </Grid.Column>
-                </Grid.Row>
-                )
-              )
-            }
-         
+              </Grid.Row>
+          )}
         </Grid>
-    </div>
-    )
+      </div>
+    );
   }
 }
 
-
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   console.log(state);
 
   return {
-    projects: state.projects
+    projects: state.projects,
   };
-}
-
+};
 
 export default connect(mapStateToProps)(ProjectsPage);

@@ -14,22 +14,23 @@ projectSchema.static.create = function (payload) {
   return project.save();
 };
 
-projectSchema.statics.findAll = function () {
-  return this.find({});
+projectSchema.statics.findAll = function (query) {
+    console.log(query)
+  return this.find().or(query);
 };
 
 projectSchema.statics.findOneByProjectid = function (projectid) {
-  return this.findById({ "_id" : projectid });
+  return this.findById({ _id: projectid });
 };
 
 projectSchema.statics.updateByProjectid = function (projectid, payload) {
   // { new: true }: return the modified document rather than the original. defaults to false
-  return this.findByIdAndUpdate({ "_id" : projectid }, payload, { new: true });
+  return this.findByIdAndUpdate({ _id: projectid }, payload, { new: true });
 };
 
 // Delete by todoid
 projectSchema.statics.deleteByProjectid = function (projectid) {
-  return this.remove({ "_id" : projectid });
+  return this.remove({ _id: projectid });
 };
 
 module.exports = mongoose.model("project", projectSchema);

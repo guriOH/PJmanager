@@ -19,10 +19,10 @@ exports.createProject = async function (body) {
 };
 
 
-exports.getProjectList = async function () {
+exports.getProjectList = async function (query) {
   try {
-    console.log("getProjectList")
-    return Project.findAll();
+    console.log(query);
+    return Project.findAll(query);
   } catch (e) {
     // Log Errors
     throw Error(e);

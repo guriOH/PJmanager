@@ -23,7 +23,7 @@ exports.getProject = async function (req, res, next) {
 exports.getProjectList = async function (req, res, next) {
     // Validate request parameters, queries using express-validator
     try {
-        var projects = await ProjectService.getProjectList();
+        var projects = await ProjectService.getProjectList(req.query);
         return res.status(200).json({ status: 200, projects: projects, message: "Succesfully get project" });
     } catch (e) {
         return res.status(400).json({ status: 400, message: e.message });

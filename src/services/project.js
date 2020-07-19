@@ -10,5 +10,10 @@ export function getProjectList() {
 }
 
 export function createProject(payload) {
+    if(payload.projectName === "" ||
+        payload.category === "" ||
+        payload.description === ""){
+            return console.log("fail")
+        }
     return axios.post('http://localhost:8080/project/',payload);
 }

@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createProject } from "../Actions";
-
-import * as service from '../services/project';
-
+import * as service from "../services/project";
 import {
   Divider,
   Form,
@@ -13,6 +11,7 @@ import {
   Segment,
   Header,
   Icon,
+  Breadcrumb
 } from "semantic-ui-react";
 
 const typeOptions = [
@@ -20,7 +19,6 @@ const typeOptions = [
   { key: "app", text: "App", value: "App" },
 ];
 class CreateProjectPage extends React.Component {
-  
   constructor(props) {
     super(props);
 
@@ -35,11 +33,10 @@ class CreateProjectPage extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
-
   createProjectInfo = async (project) => {
     const response = await service.createProject(project);
     console.log(response);
-  }
+  };
 
   handleChange(event, field) {
     this.setState({ [field]: event.target.value });
@@ -50,9 +47,9 @@ class CreateProjectPage extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state)
+    console.log(this.state);
     this.createProjectInfo(this.state);
-    this.props.newProject( this.state);
+    this.props.newProject(this.state);
     event.preventDefault();
   }
 
@@ -62,61 +59,60 @@ class CreateProjectPage extends React.Component {
     return (
       <div>
         <Header as="h3">프로젝트 시작</Header>
-          <Divider />
-          <Form onSubmit={this.handleSubmit}>
+        <Divider />
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field
+            placeholder="ProjectName"
+            name="projectname"
+            value={name}
+            onChange={(event) => this.handleChange(event, "projectName")}
+          >
+            <label>프로젝트명</label>
+            <input placeholder="Project Name" />
+          </Form.Field>
+          <Form.Group widths="equal">
             <Form.Field
-              placeholder="ProjectName"
-              name="projectname"
-              value={name}
-              onChange={(event) => this.handleChange(event, "projectName")}
-            >
-              <label>프로젝트명</label>
-              <input placeholder="Project Name" />
-            </Form.Field>
-            <Form.Group widths="equal">
-              <Form.Field
-                control={Select}
-                options={typeOptions}
-                label={{
-                  children: "분야",
-                  htmlFor: "form-select-control-gender",
-                }}
-                placeholder="Type"
-                search
-                searchInput={{ id: "form-select-control-gender" }}
-                onChange={(event, { value }) =>
-                  this.handleSearchChange(event, value, "category")
-                }
-              />
-            </Form.Group>
-            <Form.Field
-              id="form-textarea-control-opinion"
-              control={TextArea}
-              label="Opinion"
-              placeholder="Opinion"
-              name={description}
-              onChange={(event) => this.handleChange(event, "description")}
+              control={Select}
+              options={typeOptions}
+              label={{
+                children: "분야",
+                htmlFor: "form-select-control-gender",
+              }}
+              placeholder="Type"
+              search
+              searchInput={{ id: "form-select-control-gender" }}
+              onChange={(event, { value }) =>
+                this.handleSearchChange(event, value, "category")
+              }
             />
-            <Segment placeholder>
-              <Header icon>
-                <Icon name="pdf file outline" />
-                No documents are listed for this customer.
-              </Header>
-              <Button primary>Add Document</Button>
-            </Segment>
+          </Form.Group>
+          <Form.Field
+            id="form-textarea-control-opinion"
+            control={TextArea}
+            label="Opinion"
+            placeholder="Opinion"
+            name={description}
+            onChange={(event) => this.handleChange(event, "description")}
+          />
+          <Segment placeholder>
+            <Header icon>
+              <Icon name="pdf file outline" />
+              No documents are listed for this customer.
+            </Header>
+            <Button primary>Add Document</Button>
+          </Segment>
 
-            <Form.Field
-              id="form-button-control-public"
-              control={Button}
-              content="등록"
-              label=""
-            />
-          </Form>
+          <Form.Field
+            id="form-button-control-public"
+            control={Button}
+            content="등록"
+            label=""
+          />
+        </Form>
       </div>
     );
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
