@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import categoryType from "../elements/category"
 import * as service from "../services/project";
 
-import { Header, Grid, Card, Input, Divider } from "semantic-ui-react";
+import { Header, Grid, Card, Input, Divider,Select } from "semantic-ui-react";
 class ProjectsPage extends React.Component {
   constructor(props) {
     super();
@@ -34,7 +35,7 @@ class ProjectsPage extends React.Component {
     return (
       <div>
         <Header as="h3">프로젝트 모음</Header>
-        
+        <Select placeholder='Select your country' options={categoryType} />
         <Input fluid icon="search" placeholder="Search..." />
         <Divider />
         <Grid columns={8}>

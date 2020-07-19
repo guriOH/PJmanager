@@ -1,12 +1,21 @@
 import React from "react";
 
-import { Header } from "semantic-ui-react";
+import { Header, Container, Segment } from "semantic-ui-react";
 
 const DashboardPage = () => (
   <div>
     <Header as="h3">대쉬보드</Header>
-    {/* <Container textAlign="justified"> */}
-    {/* </Container> */}
+   
+    <Container>
+    <Segment inverted color='red' size='large'>
+      Red
+    </Segment>
+    </Container>
+    <Container>
+    <Segment inverted color='orange'>
+      Red
+    </Segment>
+    </Container>
   </div>
 );
 

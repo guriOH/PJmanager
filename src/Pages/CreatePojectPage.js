@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createProject } from "../Actions";
+import categoryType from "../elements/category"
 import * as service from "../services/project";
 import {
   Divider,
@@ -11,13 +12,8 @@ import {
   Segment,
   Header,
   Icon,
-  Breadcrumb
 } from "semantic-ui-react";
 
-const typeOptions = [
-  { key: "web", text: "Web", value: "Web" },
-  { key: "app", text: "App", value: "App" },
-];
 class CreateProjectPage extends React.Component {
   constructor(props) {
     super(props);
@@ -73,7 +69,7 @@ class CreateProjectPage extends React.Component {
           <Form.Group widths="equal">
             <Form.Field
               control={Select}
-              options={typeOptions}
+              options={categoryType}
               label={{
                 children: "분야",
                 htmlFor: "form-select-control-gender",
